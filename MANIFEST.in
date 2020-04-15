@@ -2,4 +2,5 @@ include LICENSE
 include README.md
 recursive-include nblog3/static *
 recursive-include nblog3/templates *
+recursive-include nblog3/frontend *
 recursive-include docs *

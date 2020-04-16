@@ -5,6 +5,9 @@
             <li><a href="https://twitter.com/toritoritorina">Twitter</a></li>
             <li><a href="mailto:toritoritorina@gmail.com">Mail</a></li>
             <li><a href="https://www.amazon.co.jp/hz/wishlist/ls/2ZCE9KHVM7FRA?&sort=default">WishList</a></li>
+            <li><a href="https://github.com/naritotakizawa/django-narito-blog3">Github</a></li>
+            <li><a href="https://narito.ninja/design-note/rss/">RSS</a></li>
+            <li><a href="https://narito.ninja/design-note/atom/">Atom</a></li>
         </ul>
     </footer>
 </template>

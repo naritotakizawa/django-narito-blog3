@@ -30,13 +30,15 @@
                 }
             })
         },
-        created() {
+        mounted() {
             this.$http(`${this.$httpPosts}${this.id}/`)
                 .then(response => {
                     return response.json()
                 })
                 .then(data => {
                     this.post = data
+                    document.title = data.title
+                    document.querySelector('meta[name="description"]').setAttribute('content', data.lead_text)
                 })
         },
         methods: {

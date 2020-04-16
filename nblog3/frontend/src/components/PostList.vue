@@ -33,6 +33,8 @@
         watch: {
             '$route'() {
                 this.getPosts()
+                document.title = `Design Note`
+                document.querySelector('meta[name="description"]').setAttribute('content', 'デザインに関する個人的なメモ、備忘録、ノートです。')
             }
         },
         created() {

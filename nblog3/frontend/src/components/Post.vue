@@ -37,7 +37,7 @@
                 })
                 .then(data => {
                     this.post = data
-                    document.title = data.title
+                    document.title = `${data.title} - Design Note`
                     document.querySelector('meta[name="description"]').setAttribute('content', data.lead_text)
                 })
         },

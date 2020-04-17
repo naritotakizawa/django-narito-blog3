@@ -95,7 +95,7 @@
     }
 
     .post-main >>> img {
-        width: 100%;
+        max-width: 100%;
         height: auto;
         box-shadow: 0 0 5px #ccc;
     }

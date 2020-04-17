@@ -97,7 +97,7 @@
     .post-main >>> img {
         max-width: 100%;
         height: auto;
-        box-shadow: 0 0 5px #ccc;
+        box-shadow: 0 0 5px #eee;
     }
 
     @media (min-width: 768px) {

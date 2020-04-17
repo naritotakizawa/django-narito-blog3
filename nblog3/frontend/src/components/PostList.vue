@@ -104,7 +104,6 @@
     .thumbnail {
         width: 100%;
         height: auto;
-
     }
 
     .post {

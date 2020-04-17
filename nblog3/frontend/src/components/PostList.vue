@@ -104,6 +104,7 @@
     .thumbnail {
         width: 100%;
         height: auto;
+        vertical-align: bottom;
     }
 
     .post {

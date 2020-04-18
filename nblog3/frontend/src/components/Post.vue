@@ -1,13 +1,13 @@
 <template>
     <article :key="id" class="container" v-if="post">
-        <nav>
-            <a id="back" @click="goBack"><img src="@/assets/back.png"></a>
-        </nav>
+        <nav id="back"><a @click="goBack" title="前ページへ戻る"><img src="@/assets/back.png"></a></nav>
         <p class="post-category" :style="{'color': post.category.color}">{{post.category.name}}</p>
         <h1 class="post-title">{{post.title}}</h1>
         <p class="post-lead">{{post.lead_text}}</p>
         <hr class="divider">
         <div class="post-main" v-html="post.main_text"></div>
+        <hr class="divider">
+        <nav id="top"><a @click="scrollTop" title="一番上まで戻る"><img src="@/assets/ue.png"></a></nav>
     </article>
 </template>
 
@@ -48,20 +48,33 @@
                 } else {
                     this.$router.push({name: 'posts'})
                 }
+            },
+            scrollTop() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
             }
         }
     }
 </script>
 
 <style scoped>
-    nav {
+    #back {
         margin-bottom: 80px;
     }
 
-    #back {
+    #back >>> a {
         cursor: pointer;
         width: 44px;
         display: inline-block;
+    }
+
+    #top >>> a {
+        cursor: pointer;
+        color: #999;
+        display: inline-block;
+        width: 44px;
     }
 
     .post-category {

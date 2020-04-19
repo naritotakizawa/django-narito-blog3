@@ -1,14 +1,23 @@
 <template>
-    <section class="container">
-        <article class="post" v-for="post of postList" :key="post.id">
-            <figure>
-                <img :src="post.thumbnail" :alt="post.title" class="thumbnail">
-            </figure>
-            <p class="post-category" :style="{'color': post.category.color}">{{post.category.name}}</p>
-            <h2 class="post-title">{{post.title}}</h2>
-            <p class="post-lead">{{post.lead_text}}</p>
-        </article>
-    </section>
+    <main class="container">
+        <p id="lead">{{postCount}}件中 {{postRangeFirst}}~{{postRangeLast}}件を一覧表示</p>
+        <section>
+            <article class="post" v-for="post of postList" :key="post.id">
+                <figure>
+                    <img :src="post.thumbnail" :alt="post.title" class="thumbnail">
+                </figure>
+                <p class="post-category" :style="{'color': post.category.color}">{{post.category.name}}</p>
+                <h2 class="post-title">{{post.title}}</h2>
+                <p class="post-lead">{{post.lead_text}}</p>
+            </article>
+        </section>
+        <hr class="divider">
+        <nav id="page">
+            <a v-if="hasPrevious" @click="getPostPrevious" id="back"><img src="@/assets/back.png"></a>
+            <span>Page {{postCurrentPageNumber}}</span>
+            <a v-if="hasNext" @click="getPostNext" id="next"><img src="@/assets/next.png"></a>
+        </nav>
+    </main>
 </template>
 
 <script>
@@ -18,10 +27,31 @@
     export default {
         name: 'post-list',
         computed: {
-          ...mapGetters(['postList'])
+            ...mapGetters([
+                'postList', 'postCount', 'postRangeFirst', 'postRangeLast',
+                'postCurrentPageNumber', 'hasPrevious', 'hasNext', 'getPreviousURL', 'getNextURL'
+            ]),
         },
         methods: {
-          ...mapActions([UPDATE_POSTS])
+            ...mapActions([UPDATE_POSTS]),
+            getPostPrevious() {
+                this.$http(this.getPreviousURL)
+                    .then(response => {
+                        return response.json()
+                    })
+                    .then(data => {
+                        this[UPDATE_POSTS](data)
+                    })
+            },
+            getPostNext() {
+                this.$http(this.getNextURL)
+                    .then(response => {
+                        return response.json()
+                    })
+                    .then(data => {
+                        this[UPDATE_POSTS](data)
+                    })
+            }
         },
         created() {
             this.$http(this.$httpPosts)

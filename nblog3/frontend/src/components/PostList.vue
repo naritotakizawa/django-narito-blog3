@@ -1,0 +1,145 @@
+<template>
+    <section class="container">
+        <article class="post" v-for="post of postList" :key="post.id">
+            <figure>
+                <img :src="post.thumbnail" :alt="post.title" class="thumbnail">
+            </figure>
+            <p class="post-category" :style="{'color': post.category.color}">{{post.category.name}}</p>
+            <h2 class="post-title">{{post.title}}</h2>
+            <p class="post-lead">{{post.lead_text}}</p>
+        </article>
+    </section>
+</template>
+
+<script>
+    export default {
+        name: 'post-list',
+        data() {
+            return {
+                postList: [],
+            }
+        },
+        created() {
+            this.$http(this.$httpPosts)
+                .then(response => {
+                    return response.json()
+                })
+                .then(data => {
+                    this.postList = data
+                })
+        }
+    }
+</script>
+
+<style scoped>
+    #lead {
+        color: #999999;
+    }
+
+    section {
+        margin-top: 80px;
+    }
+
+    .thumbnail {
+        width: 100%;
+        height: auto;
+        vertical-align: bottom;
+    }
+
+    .post {
+        text-decoration: none;
+        color: #000;
+        margin-bottom: 80px;
+        display: block;
+    }
+
+    .post-category {
+        margin-top: 25px;
+        font-size: 12px;
+    }
+
+    .post-title {
+        font-weight: bold;
+        font-size: 14px;
+        width: 100%
+    }
+
+    .post-lead {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .divider {
+        margin-top: 50px;
+        margin-bottom: 25px;
+        width: 100%;
+        height: 0;
+        border: solid 1px #ccc;
+    }
+
+    #page {
+        color: #999;
+    }
+
+    #back {
+        width: 44px;
+        margin-right: 16px;
+        display: inline-block;
+    }
+
+    #next {
+        margin-left: 44px;
+        width: 44px;
+        display: inline-block;
+    }
+
+    @media (min-width: 768px) {
+        section {
+            display: grid;
+            grid-template-columns: 320px 320px;
+            column-gap: 20px;
+            row-gap: 80px;
+        }
+
+        .thumbnail {
+            width: 320px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .post {
+            margin-bottom: 0;
+        }
+
+        .post-title {
+            width: 280px;
+        }
+
+        .post-lead {
+            width: 280px;
+        }
+
+        .divider {
+            width: 650px;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        section {
+            grid-template-columns: 480px 480px;
+        }
+
+        .thumbnail {
+            width: 480px;
+            height: 300px;
+        }
+
+        .post-title {
+            width: 440px;
+        }
+
+        .post-lead {
+            width: 440px;
+        }
+    }
+</style>

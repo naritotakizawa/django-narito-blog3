@@ -38,7 +38,7 @@
             this.getCategories()
         },
         computed: {
-            ...mapGetters(['categoryList', 'postCurrentPageNumber'])
+            ...mapGetters(['categoryList'])
         },
         methods: {
             ...mapActions([UPDATE_CATEGORIES]),

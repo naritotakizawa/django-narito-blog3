@@ -1,6 +1,6 @@
 <template>
     <header>
-        <h1><a href="/design-note/">Design Note</a></h1>
+        <h1><a href="/">Design Note</a></h1>
         <div id="form">
             ここは検索欄がはいる
         </div>

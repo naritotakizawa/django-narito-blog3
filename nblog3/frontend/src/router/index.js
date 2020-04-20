@@ -15,7 +15,9 @@ const routes = [
         path: '/detail/:id',
         name: 'detail',
         component: Post,
-        props: true,
+        props: routes => ({
+            id: Number(routes.params.id),
+        })
     },
 ]
 

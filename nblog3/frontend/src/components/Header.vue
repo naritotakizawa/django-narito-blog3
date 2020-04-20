@@ -43,7 +43,7 @@
         methods: {
             ...mapActions([UPDATE_CATEGORIES, UPDATE_POSTS]),
             search() {
-                this.$http(`${this.$httpPosts}?keyword=${this.keyword}&selected=${this.selected}`)
+                this.$http(`${this.$httpPosts}?keyword=${this.keyword}&category=${this.selected}`)
                     .then(response => {
                         return response.json()
                     })

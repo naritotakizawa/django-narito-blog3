@@ -16,29 +16,64 @@
         </section>
         <hr class="divider">
         <nav id="page">
-            <a v-if="hasPrevious" @click="getPostPrevious" id="back"><img src="@/assets/back.png"></a>
+            <router-link v-if="hasPrevious" :to="getPostPreviousURL" id="back"><img src="@/assets/back.png">
+            </router-link>
             <span>Page {{postCurrentPageNumber}}</span>
-            <a v-if="hasNext" @click="getPostNext" id="next"><img src="@/assets/next.png"></a>
+            <router-link v-if="hasNext" :to="getPostNextURL" id="next"><img src="@/assets/next.png"></router-link>
         </nav>
     </main>
 </template>
 
 <script>
     import {mapGetters, mapActions} from 'vuex'
-    import {UPDATE_POSTS} from "../store/mutation-types";
+    import {UPDATE_POSTS} from "@/store/mutation-types";
 
     export default {
         name: 'post-list',
+        watch: {
+            '$route'() {
+                this.getPosts()
+            }
+        },
+        created() {
+            this.getPosts()
+        },
         computed: {
             ...mapGetters([
                 'postList', 'postCount', 'postRangeFirst', 'postRangeLast',
                 'postCurrentPageNumber', 'hasPrevious', 'hasNext', 'getPreviousURL', 'getNextURL'
             ]),
+            getPostPreviousURL() {
+                const url = new URL(this.getPreviousURL)
+                const keyword = url.searchParams.get('keyword') || ''
+                const category = url.searchParams.get('category') || ''
+                const page = url.searchParams.get('page') || 1
+                return this.$router.resolve({
+                    name: 'posts',
+                    query: {keyword, category, page}
+                }).route.fullPath
+            },
+            getPostNextURL() {
+                const url = new URL(this.getNextURL)
+                const keyword = url.searchParams.get('keyword') || ''
+                const category = url.searchParams.get('category') || ''
+                const page = url.searchParams.get('page')
+                return this.$router.resolve({
+                    name: 'posts',
+                    query: {keyword, category, page}
+                }).route.fullPath
+            }
         },
         methods: {
             ...mapActions([UPDATE_POSTS]),
-            getPostPrevious() {
-                this.$http(this.getPreviousURL)
+            getPosts() {
+                let postURL = this.$httpPosts
+                const params = this.$route.query
+                if (params) {
+                    const queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&');
+                    postURL += '?' + queryString
+                }
+                this.$http(postURL)
                     .then(response => {
                         return response.json()
                     })
@@ -46,24 +81,6 @@
                         this[UPDATE_POSTS](data)
                     })
             },
-            getPostNext() {
-                this.$http(this.getNextURL)
-                    .then(response => {
-                        return response.json()
-                    })
-                    .then(data => {
-                        this[UPDATE_POSTS](data)
-                    })
-            }
-        },
-        created() {
-            this.$http(this.$httpPosts)
-                .then(response => {
-                    return response.json()
-                })
-                .then(data => {
-                    this[UPDATE_POSTS](data)
-                })
         }
     }
 </script>

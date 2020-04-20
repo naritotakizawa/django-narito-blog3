@@ -24,8 +24,14 @@
         name: 'site-header',
         data() {
             return {
-                keyword: '',
-                selected: '',
+                keyword: this.$route.query.keyword || '',
+                selected: this.$route.query.category || '',
+            }
+        },
+        watch: {
+            '$route'() {
+                this.keyword = this.$route.query.keyword || ''
+                this.selected = this.$route.query.category || ''
             }
         },
         created() {
@@ -43,13 +49,7 @@
         methods: {
             ...mapActions([UPDATE_CATEGORIES, UPDATE_POSTS]),
             search() {
-                this.$http(`${this.$httpPosts}?keyword=${this.keyword}&category=${this.selected}`)
-                    .then(response => {
-                        return response.json()
-                    })
-                    .then(data => {
-                        this[UPDATE_POSTS](data)
-                    })
+                this.$router.push({name: 'posts', query: {page: 1, keyword: this.keyword, category: this.selected}})
             },
         }
     }

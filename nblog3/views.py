@@ -1,3 +1,4 @@
+from django.db.models import Q
 from rest_framework import generics, pagination, response
 from .models import Post, Category
 from .serializers import CategorySerializer, PostSerializer, SimplePostSerializer
@@ -29,6 +30,20 @@ class PostList(generics.ListAPIView):
     queryset = Post.objects.all()
     serializer_class = SimplePostSerializer
     pagination_class = StandardResultsSetPagination
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        keyword = self.request.query_params.get('keyword', None)
+        if keyword:
+            queryset = queryset.filter(
+                Q(title__icontains=keyword) | Q(lead_text__icontains=keyword) | Q(main_text__icontains=keyword))
+
+        category = self.request.query_params.get('category', None)
+        if category:
+            queryset = queryset.filter(category=category)
+
+        return queryset
 
 
 class PostDetail(generics.RetrieveAPIView):

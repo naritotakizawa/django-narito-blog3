@@ -1,15 +1,57 @@
 <template>
     <header>
-        <h1><a href="/">Design Note</a></h1>
+        <h1>
+            <router-link :to="{name: 'posts'}">Design Note</router-link>
+        </h1>
         <div id="form">
-            ここは検索欄がはいる
+            <input type="text" placeholder="Search" class="text" v-model="keyword" @change="search">
+            <div class="selectWrap">
+                <select class="select" v-model="selected" @change="search">
+                    <option value="" :key="-1">Category</option>
+                    <option v-for="category of categoryList" :value="category.id" :key="category.id">{{category.name}}
+                    </option>
+                </select>
+            </div>
         </div>
     </header>
 </template>
 
 <script>
+    import {mapActions, mapGetters} from 'vuex'
+    import {UPDATE_CATEGORIES, UPDATE_POSTS} from "@/store/mutation-types"
+
     export default {
         name: 'site-header',
+        data() {
+            return {
+                keyword: '',
+                selected: '',
+            }
+        },
+        created() {
+            this.$http(this.$httpCategories)
+                .then(response => {
+                    return response.json()
+                })
+                .then(data => {
+                    this[UPDATE_CATEGORIES](data)
+                })
+        },
+        computed: {
+            ...mapGetters(['categoryList'])
+        },
+        methods: {
+            ...mapActions([UPDATE_CATEGORIES, UPDATE_POSTS]),
+            search() {
+                this.$http(`${this.$httpPosts}?keyword=${this.keyword}&selected=${this.selected}`)
+                    .then(response => {
+                        return response.json()
+                    })
+                    .then(data => {
+                        this[UPDATE_POSTS](data)
+                    })
+            },
+        }
     }
 </script>
 
@@ -45,6 +87,61 @@
         justify-self: end;
         align-self: center;
         display: none;
+    }
+
+    .text {
+        border-bottom: solid 1px #ccc;
+        border-right: none;
+        border-top: none;
+        border-left: none;
+        background-color: transparent;
+        color: #fff;
+        width: 200px;
+        margin-left: 20px;
+        padding-left: 6px;
+        padding-bottom: 1px;
+        font-family: fot-tsukuardgothic-std, sans-serif;
+    }
+
+    .selectWrap {
+        margin-left: 20px;
+        width: 150px;
+        position: relative;
+        display: inline-block;
+    }
+
+    .selectWrap::after {
+        content: '';
+        width: 6px;
+        height: 6px;
+        border: 0;
+        border-bottom: solid 2px #ccc;
+        border-right: solid 2px #ccc;
+        -ms-transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        margin-top: -4px;
+    }
+
+    .select {
+        appearance: none;
+        border-bottom: solid 1px #ccc;
+        border-right: none;
+        border-top: none;
+        border-left: none;
+        background-color: transparent;
+        color: #fff;
+        width: 100%;
+        font-family: fot-tsukuardgothic-std, sans-serif;
+    }
+
+    ::placeholder {
+        color: #fff;
+        opacity: 1;
+        font-family: fot-tsukuardgothic-std, sans-serif;
     }
 
     @media (min-width: 768px) {

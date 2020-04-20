@@ -2,14 +2,17 @@
     <main class="container">
         <p id="lead">{{postCount}}件中 {{postRangeFirst}}~{{postRangeLast}}件を一覧表示</p>
         <section>
-            <article class="post" v-for="post of postList" :key="post.id">
-                <figure>
-                    <img :src="post.thumbnail" :alt="post.title" class="thumbnail">
-                </figure>
-                <p class="post-category" :style="{'color': post.category.color}">{{post.category.name}}</p>
-                <h2 class="post-title">{{post.title}}</h2>
-                <p class="post-lead">{{post.lead_text}}</p>
-            </article>
+            <router-link :to="{name: 'detail', params: {id: post.id}}" v-for="post of postList" :key="post.id"
+                         class="post">
+                <article>
+                    <figure>
+                        <img :src="post.thumbnail" :alt="post.title" class="thumbnail">
+                    </figure>
+                    <p class="post-category" :style="{'color': post.category.color}">{{post.category.name}}</p>
+                    <h2 class="post-title">{{post.title}}</h2>
+                    <p class="post-lead">{{post.lead_text}}</p>
+                </article>
+            </router-link>
         </section>
         <hr class="divider">
         <nav id="page">

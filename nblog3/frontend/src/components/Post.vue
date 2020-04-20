@@ -64,13 +64,13 @@
         margin-bottom: 80px;
     }
 
-    #back >>> a {
+    #back a {
         cursor: pointer;
         width: 44px;
         display: inline-block;
     }
 
-    #top >>> a {
+    #top a {
         cursor: pointer;
         color: #999;
         display: inline-block;
@@ -103,11 +103,11 @@
         line-height: 2;
     }
 
-    .post-main >>> p {
+    .post-main p {
         margin-bottom: 4em;
     }
 
-    .post-main >>> img {
+    .post-main img {
         max-width: 100%;
         height: auto;
         box-shadow: 0 0 5px #ccc;

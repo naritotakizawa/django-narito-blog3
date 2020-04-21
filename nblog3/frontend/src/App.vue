@@ -1,10 +1,12 @@
 <template>
     <div id="app">
         <Header/>
-        <transition appear>
-            <router-view />
-        </transition>
-        <Footer />
+        <main>
+            <transition appear>
+                <router-view />
+            </transition>
+        </main>
+        <Footer/>
     </div>
 </template>
 
@@ -22,6 +24,10 @@
     * {
         margin: 0;
         padding: 0;
+    }
+
+    main {
+        min-height: calc(100vh - 290px);
     }
 
     body {

@@ -1,5 +1,5 @@
 <template>
-    <main :key="getKey" class="container">
+    <div :key="getKey" class="container">
         <p id="lead">{{postCount}}件中 {{postRangeFirst}}~{{postRangeLast}}件を一覧表示</p>
         <section>
             <router-link :to="{name: 'detail', params: {id: post.id}}" v-for="post of postList" :key="post.id"
@@ -21,7 +21,7 @@
             <span>Page {{postCurrentPageNumber}}</span>
             <router-link v-if="hasNext" :to="getPostNextURL" id="next"><img src="@/assets/next.png"></router-link>
         </nav>
-    </main>
+    </div>
 </template>
 
 <script>

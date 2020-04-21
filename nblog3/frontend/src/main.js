@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueAnalytics from 'vue-analytics'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -14,3 +15,8 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+Vue.use(VueAnalytics, {
+  id: 'UA-72333380-3',
+  router
+})

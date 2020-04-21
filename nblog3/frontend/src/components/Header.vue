@@ -35,30 +35,22 @@
             }
         },
         created() {
-            this.getCategories()
+            this.$http(this.$httpCategories)
+                .then(response => {
+                    return response.json()
+                })
+                .then(data => {
+                    this[UPDATE_CATEGORIES](data)
+                })
         },
         computed: {
             ...mapGetters(['categoryList'])
         },
         methods: {
             ...mapActions([UPDATE_CATEGORIES]),
-            getCategories() {
-                this.$http(this.$httpCategories)
-                    .then(response => {
-                        return response.json()
-                    })
-                    .then(data => {
-                        this[UPDATE_CATEGORIES](data)
-                    })
-            },
             search() {
                 this.$router.push({name: 'posts', query: {page: 1, keyword: this.keyword, category: this.selected}})
             },
-            toTop() {
-                this.keyword = ''
-                this.category = ''
-                this.$router.push({name: 'posts'})
-            }
         }
     }
 </script>
@@ -160,7 +152,6 @@
         #form {
             display: block;
         }
-
     }
 
     @media (min-width: 1024px) {
@@ -168,6 +159,4 @@
             grid-template-columns: 1fr 980px 1fr;
         }
     }
-
-
 </style>

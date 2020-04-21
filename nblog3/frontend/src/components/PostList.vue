@@ -33,41 +33,41 @@
         watch: {
             '$route'() {
                 this.getPosts()
-                document.title = `Design Note`
-                document.querySelector('meta[name="description"]').setAttribute('content', 'デザインに関する個人的なメモ、備忘録、ノートです。')
             }
         },
-        mounted() {
+        created() {
             this.getPosts()
+        },
+        mounted() {
             document.title = `Design Note`
             document.querySelector('meta[name="description"]').setAttribute('content', 'デザインに関する個人的なメモ、備忘録、ノートです。')
         },
         computed: {
             ...mapGetters([
                 'postList', 'postCount', 'postRangeFirst', 'postRangeLast',
-                'postCurrentPageNumber', 'hasPrevious', 'hasNext'
+                'postCurrentPageNumber', 'hasPrevious', 'hasNext', 'getPreviousURL', 'getNextURL'
             ]),
             getKey() {
                 return `${this.postCurrentPageNumber} ${this.$route.query.keyword} ${this.$route.query.category}`
             },
             getPostPreviousURL() {
-                const query = this.$route.query
-                const page = this.postCurrentPageNumber - 1
-                const keyword = query.keyword || ''
-                const category = query.category || ''
+                const url = new URL(this.getPreviousURL)
+                const keyword = url.searchParams.get('keyword') || ''
+                const category = url.searchParams.get('category') || ''
+                const page = url.searchParams.get('page') || 1
                 return this.$router.resolve({
                     name: 'posts',
-                    query: {page: page, keyword: keyword, category: category}
+                    query: {keyword, category, page}
                 }).route.fullPath
             },
             getPostNextURL() {
-                const query = this.$route.query
-                const page = this.postCurrentPageNumber + 1
-                const keyword = query.keyword || ''
-                const category = query.category || ''
+                const url = new URL(this.getNextURL)
+                const keyword = url.searchParams.get('keyword') || ''
+                const category = url.searchParams.get('category') || ''
+                const page = url.searchParams.get('page')
                 return this.$router.resolve({
                     name: 'posts',
-                    query: {page: page, keyword: keyword, category: category}
+                    query: {keyword, category, page}
                 }).route.fullPath
             }
         },
@@ -76,8 +76,8 @@
             getPosts() {
                 let postURL = this.$httpPosts
                 const params = this.$route.query
-                if (params) {
-                    const queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&');
+                const queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&')
+                if (queryString) {
                     postURL += '?' + queryString
                 }
                 this.$http(postURL)
@@ -154,7 +154,6 @@
         display: inline-block;
     }
 
-
     @media (min-width: 768px) {
         section {
             display: grid;
@@ -187,7 +186,6 @@
     }
 
     @media (min-width: 1024px) {
-
         section {
             grid-template-columns: 480px 480px;
         }
@@ -205,6 +203,4 @@
             width: 440px;
         }
     }
-
-
 </style>

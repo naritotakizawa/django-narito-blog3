@@ -1,12 +1,10 @@
 <template>
     <div id="app">
         <Header/>
-
-        <transition>
-            <router-view/>
+        <transition appear>
+            <router-view />
         </transition>
-
-        <Footer/>
+        <Footer />
     </div>
 </template>
 
@@ -16,7 +14,7 @@
 
     export default {
         name: 'app',
-        components: {Header, Footer},
+        components: {Header, Footer}
     }
 </script>
 
@@ -53,7 +51,7 @@
     }
 
     .v-enter-active {
-        transition: opacity .5s;
+        transition: opacity 1s;
     }
 
     .v-enter {

@@ -59,7 +59,6 @@
             justify-self: end;
             align-self: center;
         }
-
     }
 
     @media (min-width: 1024px) {
@@ -67,5 +66,4 @@
             grid-template-columns: 1fr 980px 1fr;
         }
     }
-
 </style>

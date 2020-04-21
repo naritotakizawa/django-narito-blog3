@@ -5,60 +5,66 @@ import {UPDATE_POSTS, UPDATE_CATEGORIES} from "./mutation-types"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  strict: process.env.NODE_ENV === 'production',
-  state: {
-    posts: {},
-    categories: [],
-  },
-  getters: {
-    hasPrevious(state) {
-      return !!state.posts.previous
+    strict: process.env.NODE_ENV !== 'production',
+    state: {
+        posts: {},
+        categories: [],
     },
+    getters: {
+        getPreviousURL(state) {
+            return state.posts.previous
+        },
 
-    hasNext(state) {
-      return !!state.posts.next
-    },
+        getNextURL(state) {
+            return state.posts.next
+        },
 
-    postRangeFirst(state) {
-      return state.posts.range_first
-    },
+        hasPrevious(state) {
+            return !!state.posts.previous
+        },
 
-    postRangeLast(state) {
-      return state.posts.range_last
-    },
+        hasNext(state) {
+            return !!state.posts.next
+        },
 
-    postCurrentPageNumber(state) {
-      return state.posts.current_page
-    },
+        postRangeFirst(state) {
+            return state.posts.range_first
+        },
 
-    postCount(state) {
-      return state.posts.count
-    },
+        postRangeLast(state) {
+            return state.posts.range_last
+        },
 
-    postList(state) {
-      return state.posts.results
-    },
+        postCurrentPageNumber(state) {
+            return state.posts.current_page
+        },
 
-    categoryList(state) {
-      return state.categories
+        postCount(state) {
+            return state.posts.count
+        },
+
+        postList(state) {
+            return state.posts.results
+        },
+        categoryList(state) {
+            return state.categories
+        },
     },
-  },
-  mutations: {
-    [UPDATE_POSTS](state, payload) {
-      state.posts = payload
+    mutations: {
+        [UPDATE_POSTS](state, payload) {
+            state.posts = payload
+        },
+        [UPDATE_CATEGORIES](state, payload) {
+            state.categories = payload
+        },
     },
-    [UPDATE_CATEGORIES](state, payload) {
-      state.categories = payload
+    actions: {
+        [UPDATE_POSTS]({commit}, payload) {
+            commit(UPDATE_POSTS, payload)
+        },
+        [UPDATE_CATEGORIES]({commit}, payload) {
+            commit(UPDATE_CATEGORIES, payload)
+        },
     },
-  },
-  actions: {
-    [UPDATE_POSTS]({commit}, payload) {
-      commit(UPDATE_POSTS, payload)
-    },
-    [UPDATE_CATEGORIES]({commit}, payload) {
-      commit(UPDATE_CATEGORIES, payload)
-    },
-  },
-  modules: {
-  }
+    modules: {}
 })

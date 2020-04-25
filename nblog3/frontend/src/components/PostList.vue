@@ -159,7 +159,7 @@
             display: grid;
             grid-template-columns: 320px 320px;
             column-gap: 20px;
-            row-gap: 80px;
+            row-gap: 100px;
         }
 
         .thumbnail {

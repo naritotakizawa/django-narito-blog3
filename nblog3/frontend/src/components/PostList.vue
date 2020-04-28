@@ -115,7 +115,7 @@
     }
 
     .post-category {
-        margin-top: 25px;
+        margin-top: 16px;
         font-size: 12px;
     }
 

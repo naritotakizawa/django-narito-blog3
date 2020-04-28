@@ -157,14 +157,14 @@
     @media (min-width: 768px) {
         section {
             display: grid;
-            grid-template-columns: 320px 320px;
+            grid-template-columns: 340px 340px;
             column-gap: 20px;
             row-gap: 100px;
         }
 
         .thumbnail {
-            width: 320px;
-            height: 200px;
+            width: 340px;
+            height: 212px;
             object-fit: cover;
         }
 

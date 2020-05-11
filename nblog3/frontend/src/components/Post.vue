@@ -94,8 +94,9 @@
         margin-top: 80px;
         margin-bottom: 80px;
         width: 100%;
-        height: 0;
-        border: solid 1px #ccc;
+        height: 1px;
+        border: none;
+        background-color: #ccc;
     }
 
     .post-main {

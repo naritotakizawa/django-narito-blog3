@@ -134,8 +134,9 @@
         margin-top: 50px;
         margin-bottom: 25px;
         width: 100%;
-        height: 0;
-        border: solid 1px #ccc;
+        height: 1px;
+        border: none;
+        background-color: #ccc;
     }
 
     #page {

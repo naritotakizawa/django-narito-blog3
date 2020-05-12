@@ -144,6 +144,10 @@
         background-color: yellow;
     }
 
+    #post-main >>> div.toc {
+        display: none;
+    }
+
     #toc {
         display: none;
     }
@@ -157,7 +161,6 @@
         .post-lead {
             width: 440px;
         }
-
 
         #post-main {
             width: 650px;
@@ -184,8 +187,5 @@
             grid-column: 2;
         }
 
-        #post-main >>> div.toc {
-            display: none;
-        }
     }
 </style>

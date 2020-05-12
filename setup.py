@@ -15,7 +15,7 @@ setup(
     author_email='toritoritorina@gmail.com',
     url='https://github.com/naritotakizawa/django-narito-blog3/',
     packages=find_packages(exclude=('tests','project')),
-    install_requires=('djangorestframework', 'pillow'),
+    install_requires=('djangorestframework', 'pillow', 'pillow'),
     include_package_data=True,
     license='MIT',
 )

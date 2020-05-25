@@ -80,7 +80,7 @@
                 if (queryString) {
                     postURL += '?' + queryString
                 }
-                this.$http(postURL)
+                this.$http(postURL, {credentials: "include",})
                     .then(response => {
                         return response.json()
                     })

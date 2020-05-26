@@ -4,9 +4,7 @@
             <nav id="back"><a @click="goBack" title="前ページへ戻る"><img src="@/assets/back.png"></a></nav>
             <p class="post-category" :style="{'color': post.category.color}">{{post.category.name}}</p>
             <h1 class="post-title">{{post.title}}</h1>
-            <p class="post-lead">{{post.lead_text}}</p>
         </header>
-        <hr class="divider">
         <div id="main">
             <nav id="toc" ref="toc"></nav>
             <div id="post-main" ref="text" v-html="post.main_text"></div>
@@ -72,6 +70,10 @@
 </script>
 
 <style scoped>
+    header {
+        margin-bottom: 80px;
+    }
+
     #back {
         margin-bottom: 80px;
     }
@@ -90,16 +92,12 @@
     }
 
     .post-category {
-        font-size: 12px;
+        font-size: 20px;
     }
 
     .post-title {
         font-weight: bold;
-        font-size: 14px;
-    }
-
-    .post-lead {
-        margin-top: 10px;
+        font-size: 28px;
     }
 
     .divider {
@@ -126,12 +124,16 @@
         margin-bottom: 1.5em;
     }
 
+    #post-main >>> div.toc + * {
+        margin-top: 0;
+    }
+
     #post-main >>> > h2 {
         font-weight: bold;
-        font-size: 14px;
-        text-decoration: underline;
-        margin-top: 4em;
-        margin-bottom: 1em;
+        font-size: 20px;
+        line-height: 1.5;
+        margin-top: 50px;
+        margin-bottom: 21px;
     }
 
     #post-main >>> img {
@@ -154,19 +156,10 @@
 
     @media (min-width: 768px) {
 
-        .post-title {
-            width: 440px;
-        }
-
-        .post-lead {
-            width: 440px;
-        }
-
         #post-main {
             width: 650px;
         }
     }
-
 
     @media (min-width: 1024px) {
         #main {

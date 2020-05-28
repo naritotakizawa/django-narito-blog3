@@ -92,12 +92,14 @@
     }
 
     .post-category {
-        font-size: 20px;
+        font-size: 14px;
+        font-family: fot-tsukuardgothic-std, sans-serif;
     }
 
     .post-title {
         font-weight: bold;
-        font-size: 28px;
+        font-size: 22px;
+        font-family: fot-tsukuardgothic-std, sans-serif;
     }
 
     .divider {
@@ -129,10 +131,11 @@
     }
 
     #post-main >>> > h2 {
+        font-family: fot-tsukuardgothic-std, sans-serif;
         font-weight: bold;
-        font-size: 20px;
+        font-size: 18px;
         line-height: 1.5;
-        margin-top: 50px;
+        margin-top: 42px;
         margin-bottom: 21px;
     }
 

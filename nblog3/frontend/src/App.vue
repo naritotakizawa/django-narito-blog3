@@ -31,7 +31,7 @@
     }
 
     body {
-        font-family: fot-tsukuardgothic-std, sans-serif;
+        font-family: fot-cezanne-pron, sans-serif;
         line-height: 1.5;
         font-size: 14px;
     }

@@ -115,18 +115,20 @@
     }
 
     .post-category {
-        margin-top: 16px;
-        font-size: 12px;
+        margin-top: 15px;
+        font-size: 14px;
+        font-family: fot-tsukuardgothic-std, sans-serif;
     }
 
     .post-title {
         font-weight: bold;
-        font-size: 14px;
-        width: 100%
+        font-size: 18px;
+        width: 100%;
+        font-family: fot-tsukuardgothic-std, sans-serif;
     }
 
     .post-lead {
-        margin-top: 10px;
+        margin-top: 15px;
         width: 100%;
     }
 

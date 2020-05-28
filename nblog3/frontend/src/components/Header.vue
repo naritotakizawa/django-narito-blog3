@@ -1,6 +1,6 @@
 <template>
     <header>
-        <h1>
+        <h1 class="title">
             <router-link :to="{name: 'posts'}">Design Note</router-link>
         </h1>
         <div id="form">
@@ -76,6 +76,8 @@
         align-self: center;
         font-size: 20px;
         font-weight: normal;
+        letter-spacing: 1.44px;
+        font-family: fot-tsukuardgothic-std, sans-serif;
     }
 
     h1 > a {

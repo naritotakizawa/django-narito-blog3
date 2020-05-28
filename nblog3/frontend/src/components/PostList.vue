@@ -128,7 +128,7 @@
     }
 
     .post-lead {
-        margin-top: 15px;
+        margin-top: 8px;
         width: 100%;
     }
 

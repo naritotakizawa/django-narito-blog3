@@ -18,7 +18,7 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-Django管理サイトでデータを幾つか追加したら、`http://127.0.0.1:8000/design-note/`にアクセスし、ブログを楽しみましょう。
+Django管理サイトでデータを幾つか追加したら、`http://127.0.0.1:8000/blog/`にアクセスし、ブログを楽しみましょう。
 
 ### 既にあるDjangoプロジェクトに導入したい
 
@@ -59,7 +59,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('design-note/', include('nblog3.urls')),
+    path('blog/', include('nblog3.urls')),
 ]
 
 
@@ -79,4 +79,4 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-Django管理サイトでデータを幾つか追加したら、`http://127.0.0.1:8000/design-note/`にアクセスし、ブログを楽しみましょう。
+Django管理サイトでデータを幾つか追加したら、`http://127.0.0.1:8000/blog/`にアクセスし、ブログを楽しみましょう。

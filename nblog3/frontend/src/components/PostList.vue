@@ -39,8 +39,8 @@
             this.getPosts()
         },
         mounted() {
-            document.title = `Design Note`
-            document.querySelector('meta[name="description"]').setAttribute('content', 'デザインに関する個人的なメモ、備忘録、ノートです。')
+            document.title = `ブログ`
+            document.querySelector('meta[name="description"]').setAttribute('content', '日々の雑記ブログ')
         },
         computed: {
             ...mapGetters([

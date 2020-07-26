@@ -7,8 +7,8 @@ import store from './store'
 Vue.config.productionTip = false
 
 Vue.prototype.$http = (url, opts) => fetch(url, opts)
-Vue.prototype.$httpPosts = process.env.NODE_ENV === 'production' ? '/design-note/api/posts/' : 'http://127.0.0.1:8000/design-note/api/posts/'
-Vue.prototype.$httpCategories = process.env.NODE_ENV === 'production' ? '/design-note/api/categories/' : 'http://127.0.0.1:8000/design-note/api/categories/'
+Vue.prototype.$httpPosts = process.env.NODE_ENV === 'production' ? '/blog/api/posts/' : 'http://127.0.0.1:8000/blog/api/posts/'
+Vue.prototype.$httpCategories = process.env.NODE_ENV === 'production' ? '/blog/api/categories/' : 'http://127.0.0.1:8000/blog/api/categories/'
 
 new Vue({
   router,

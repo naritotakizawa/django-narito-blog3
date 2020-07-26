@@ -40,7 +40,7 @@
                 })
                 .then(data => {
                     this.post = data
-                    document.title = `${data.title} - Design Note`
+                    document.title = `${data.title} - ブログ`
                     document.querySelector('meta[name="description"]').setAttribute('content', data.lead_text)
                     this.$nextTick(() => this.moveToc())
 

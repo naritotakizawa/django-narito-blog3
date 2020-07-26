@@ -1,7 +1,7 @@
 <template>
     <header>
         <h1 class="title">
-            <router-link :to="{name: 'posts'}">Design Note</router-link>
+            <router-link :to="{name: 'posts'}">ブログ</router-link>
         </h1>
         <div id="form">
             <input type="text" placeholder="Search" class="text" v-model="keyword" @change="search">

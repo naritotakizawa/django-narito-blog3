@@ -1,6 +1,6 @@
 # django-narito-blog3
 
-Django REST frameworkとVueで作ったシンプルでオシャレなブログ
+Django REST frameworkとVueで作ったシンプルブログ
 
 ## インストールと動かし方
 
